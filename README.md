@@ -26,7 +26,7 @@ You can then run the analysis by typing:
 wordle([save_path])
 ```
 
-This statement will save a .csv file to `save_path`. If `save_path is omitted, it will be saved as `wordle_analysis.csv` in the current working directory.
+This statement will save a .csv file to `save_path`. If `save_path` is omitted, it will be saved as `wordle_analysis.csv` in the current working directory.
 
 ## Interpreting the results
 
