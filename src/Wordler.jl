@@ -56,7 +56,11 @@ function get_all_overlaps(guesses::Vector{String},answers::Vector{String})::Data
     all_rows=[] #make an empty vector to hold all our rows, represented as NamedTuples (could specify this type but I'm lazy)
     for g in guesses
         this_dist=get_overlap_distribution(g,answers)
-        push!(all_rows,(guess=g,one=this_dist[1],two=this_dist[2],three=this_dist[3],four=this_dist[4],five=this_dist[5]))
+        push!(all_rows,(guess=g,one=sum(this_dist),
+                        two=sum(this_dist[2:end]),
+                        three=sum(this_dist[3:end]),
+                        four=sum(this_dist[4:end]),
+                        five=this_dist[5]))
     end
     return DataFrame(all_rows)
 end
