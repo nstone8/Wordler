@@ -2,3 +2,7 @@ name = "Wordler"
 uuid = "d0db9b40-6bfe-421c-ab7c-5ea17ea2d7b3"
 authors = ["Nicholas Stone <stone.nicholas@gmail.com>"]
 version = "0.1.0"
+
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
