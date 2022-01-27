@@ -28,6 +28,9 @@ wordle([save_path])
 
 This statement will save a .csv file to `save_path`. If `save_path` is omitted, it will be saved as `wordle_analysis.csv` in the current working directory.
 
+## Downloading the results
+
+If you don't want to run the code yourself, you can download the results [here](https://github.com/nstone8/wordler-results/blob/main/wordle_analysis.csv).
 ## Interpreting the results
 
 The columns in the generated `DataFrame` consist of a `guess` column as well as `yellow_X` and `green_X` columns, where X ranges from `one` to `five`. `yellow_X` columns give the percentage of possible answers for which this guess shares `X` or more unique characters (i.e. will get at least `X` yellow or green squares in the game). `green_X` columns give the percentage of possible answers for which this guess has `X` or more characters in the exact same position (i.e. will get at least `X` green squares in the game).
