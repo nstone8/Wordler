@@ -11,7 +11,7 @@ This code was tested on Julia 1.7.1, to install Wordler, execute the following s
 
 ```julia
 using Pkg
-Pkg.add("https://github.com/nstone8/Wordler")
+Pkg.add(url="https://github.com/nstone8/Wordler")
 ```
 
 to load the package, type:
