@@ -50,17 +50,45 @@ function get_overlap_distribution(guess::String,answers::Vector{String})::Vector
 end
 
 """
+Get the percentage of answers for which this guess has 1,2,3,4 or 5 letters in identical
+positions. Returns a vector formatted in the same way as that returned by
+`get_overlap_distribution`
+"""
+function get_identical_distribution(guess::String,answers::Vector{String})::Vector{Float64}
+    overlap_counts=zeros(Int,(5,))
+    for ans in answers
+        this_count=0
+        for i in 1:5
+            if ans[i]==guess[i]
+                this_count+=1
+            end
+        end
+        if this_count>0
+            overlap_counts[this_count]+=1
+        end
+    end
+    return overlap_counts./length(answers)
+end
+
+"""
 Get the overlap distributions for all guesses as a DataFrame
 """
 function get_all_overlaps(guesses::Vector{String},answers::Vector{String})::DataFrame
     all_rows=[] #make an empty vector to hold all our rows, represented as NamedTuples (could specify this type but I'm lazy)
     for g in guesses
-        this_dist=get_overlap_distribution(g,answers)
-        push!(all_rows,(guess=g,one=sum(this_dist),
-                        two=sum(this_dist[2:end]),
-                        three=sum(this_dist[3:end]),
-                        four=sum(this_dist[4:end]),
-                        five=this_dist[5]))
+        this_over_dist=get_overlap_distribution(g,answers)
+        this_ident_dist=get_identical_distribution(g,answers)
+        push!(all_rows,(guess=g,
+                        yellow_one=sum(this_over_dist),
+                        yellow_two=sum(this_over_dist[2:end]),
+                        yellow_three=sum(this_over_dist[3:end]),
+                        yellow_four=sum(this_over_dist[4:end]),
+                        yellow_five=this_over_dist[5],
+                        green_one=sum(this_ident_dist),
+                        green_two=sum(this_ident_dist[2:end]),
+                        green_three=sum(this_ident_dist[3:end]),
+                        green_four=sum(this_ident_dist[4:end]),
+                        green_five=this_ident_dist[5]))
     end
     return DataFrame(all_rows)
 end
